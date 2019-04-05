@@ -82,8 +82,9 @@ namespace ServiceFabric.Mocks.ReplicaSet
             var serviceContext = MockStatefulServiceContextFactory.Create(CodePackageActivationContext, ServiceTypeName, ServiceUri, Guid.NewGuid(), replicaId ?? _random.Next());
             var stateManager = _stateManagerFactory(serviceContext, _reliableStates);
             var replica = new MockStatefulServiceReplica<TStatefulService>(_serviceFactory, serviceContext, stateManager);
-            await replica.CreateAsync(role);
             _replicas.Add(replica);
+            await replica.CreateAsync(role);
+            
 
         }
 
